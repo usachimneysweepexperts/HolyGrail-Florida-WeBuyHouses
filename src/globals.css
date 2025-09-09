@@ -1,0 +1,11 @@
+/* src/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS below the directives */
+:root {
+  --primary-color: #1d4ed8;
+  --secondary-color: #f59e0b;
+}
