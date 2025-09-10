@@ -1,6 +1,6 @@
 //src\app\layout.jsx
 import "../globals.css";
-import Footer from "./components/Footer";
+import Footer from "./components/NewFooter";
 import { siteConfig } from "./config";
 import { generateMetadata } from "./components/utils/metadata";
 

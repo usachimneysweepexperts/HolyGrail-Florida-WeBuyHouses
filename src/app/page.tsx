@@ -9,7 +9,7 @@ import { siteConfig } from "./config";
 import { generateMetadata } from "./components/utils/metadata";
 import SellingProcess from "./components/SellingProcess";
 import SellingOptions from "./components/SellingOptions";
-import Locations from "./components/Locations";
+import LocationsPreview from "./components/LocationsPreview";
 import Header from "./components/Header";
 
 export const metadata = generateMetadata({
@@ -24,7 +24,7 @@ export default function Home() {
       <Header />
       <Hero />
       <ContentSection />
-      <Locations />
+      <LocationsPreview />
       <ContactForm side="left" />
       <SellingProcess />
       <SellingOptions />
