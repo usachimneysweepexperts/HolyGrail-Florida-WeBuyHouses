@@ -1,28 +1,37 @@
+// src/components/Header.tsx
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { siteConfig } from "../config";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import Image from "next/image";
 
-export default function Header() {
+type HeaderProps = {
+  basePath?: string; // אם לא נשלח – ברירת מחדל ריקה
+};
+
+export default function Header({ basePath = "" }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handlePhoneSubmit = (e) => {
+  const handlePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (phoneNumber) {
       window.location.href = `tel:${phoneNumber}`;
     }
   };
 
+  // פונקציה שתבנה קישור נכון
+  const buildHref = (href: string) => {
+    if (href === "/") return "/"; // דף הבית תמיד ראשי
+    return basePath ? `${basePath}${href}` : href;
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-lg bg-gradient-to-b from-white to-transparent">
       <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        {/* Logo and Site Name */}
+        {/* Logo */}
         <h1
           className="text-2xl font-bold flex items-center gap-2"
           style={{ color: siteConfig.primaryColor }}
@@ -43,43 +52,28 @@ export default function Header() {
           </Link>
         </h1>
 
-        {/* Desktop Navigation, Phone Form, and Call Now button */}
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center space-x-6">
           <nav className="flex items-center space-x-6">
             {siteConfig.header.navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                className={`text-lg font-medium transition-colors duration-200 ${
-                  pathname === link.href ? "font-bold border-b-2" : ""
-                }`}
-                style={{
-                  color:
-                    pathname === link.href
-                      ? siteConfig.primaryColor
-                      : "#4b5563", // Fallback for gray-700
-                  borderColor:
-                    pathname === link.href
-                      ? siteConfig.primaryColor
-                      : "transparent",
-                }}
+                href={buildHref(link.href)}
+                className="text-lg font-medium transition-colors duration-200"
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* Separate Call Now button for immediate action */}
           <a
             href={`tel:${siteConfig.phoneNumber}`}
             className="text-white px-4 py-2 rounded-full shadow-md transition-colors duration-200 flex items-center gap-2"
             style={{ backgroundColor: siteConfig.secondaryColor }}
           >
-            <Phone size={20} />
-            <span>Call Now</span>
+            <Phone size={20} /> <span>Call Now</span>
           </a>
 
-          {/* Phone Form for submitting number */}
           <form
             onSubmit={handlePhoneSubmit}
             className="flex items-center gap-2"
@@ -102,7 +96,7 @@ export default function Header() {
           </form>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -113,31 +107,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`md:hidden fixed inset-0 z-40 bg-white/90 backdrop-blur-md transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out`}
-      >
-        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+      {/* Mobile overlay */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-white/90 backdrop-blur-md p-6 flex flex-col items-center justify-center">
           <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute top-6 right-6 text-gray-600 focus:outline-none"
           >
             <X size={32} />
           </button>
-          <nav className="flex flex-col space-y-8 w-full">
+          <nav className="flex flex-col space-y-8 w-full text-center">
             {siteConfig.header.navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                className={`text-3xl font-semibold transition-colors duration-200 ${
-                  pathname === link.href ? "" : "text-gray-900"
-                }`}
-                style={{
-                  color:
-                    pathname === link.href
-                      ? siteConfig.primaryColor
-                      : "#111827",
-                }} // Fallback for gray-900
+                href={buildHref(link.href)}
+                className="text-3xl font-semibold"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -145,18 +129,15 @@ export default function Header() {
             ))}
             <a
               href={`tel:${siteConfig.phoneNumber}`}
-              className="mt-8 text-white px-8 py-5 rounded-full text-center font-bold text-2xl shadow-md transition-colors duration-200"
-              style={{
-                backgroundColor: siteConfig.secondaryColor,
-                hover: { backgroundColor: siteConfig.secondaryColor + "99" },
-              }}
+              className="mt-8 text-white px-8 py-5 rounded-full text-center font-bold text-2xl shadow-md"
+              style={{ backgroundColor: siteConfig.secondaryColor }}
               onClick={() => setIsMenuOpen(false)}
             >
               Call: {siteConfig.phoneNumber}
             </a>
           </nav>
         </div>
-      </div>
+      )}
     </header>
   );
 }
