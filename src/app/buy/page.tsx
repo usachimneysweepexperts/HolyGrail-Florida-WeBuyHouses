@@ -13,8 +13,6 @@ export const metadata = generateMetadata({
 });
 
 export default function BuyPage() {
-  const hero = siteConfig.pages.buy.hero;
-
   return (
     <>
       <Header />

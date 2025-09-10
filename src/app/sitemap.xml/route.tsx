@@ -1,22 +1,35 @@
-//wihomebuyers\src\app\sitemap.xml\route.tsx
 import { siteConfig } from "../config";
 
 export async function GET() {
-  const baseUrl = "https://yourdomain.com";
-  const locations = siteConfig.footer.locations.map((loc: string) =>
-    loc.toLowerCase().replace(/, /g, "-").replace(/\s+/g, "-"),
-  );
+  const baseUrl = siteConfig.fullDomain.replace(/\/$/, "");
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  // Static pages
+  const staticPages = ["/", "/buy", "/sell", "/contact", "/privacy-policy"];
+
+  // Location-based pages
+  const locationPages = siteConfig.locations.flatMap((loc) => {
+    const path = loc.href;
+    return [`${path}`, `${path}/buy`, `${path}/sell`, `${path}/contact`];
+  });
+
+  const allPages = [...staticPages, ...locationPages];
+
+  // Build XML string
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${baseUrl}/</loc><lastmod>${new Date().toISOString()}</lastmod><priority>1.0</priority></url>
-  <url><loc>${baseUrl}/contact</loc><priority>0.8</priority></url>
-  <url><loc>${baseUrl}/blog</loc><priority>0.7</priority></url>
-  <url><loc>${baseUrl}/privacy-policy</loc><priority>0.5</priority></url>
-  ${locations.map((loc: string) => `<url><loc>${baseUrl}/${loc}</loc><priority>0.9</priority></url>`).join("")}
+${allPages
+  .map(
+    (url) => `<url>
+  <loc>${baseUrl}${url}</loc>
+  <lastmod>${new Date().toISOString()}</lastmod>
+</url>`,
+  )
+  .join("\n")}
 </urlset>`;
 
-  return new Response(sitemap, {
-    headers: { "Content-Type": "application/xml" },
+  return new Response(xml, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
   });
 }

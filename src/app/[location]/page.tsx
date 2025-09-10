@@ -11,9 +11,7 @@ import { generateMetadata as buildMetadata } from "../components/utils/metadata"
 import Header from "../components/Header";
 
 type PageProps = {
-  params: {
-    location: string;
-  };
+  params: Promise<{ location: string }>;
 };
 
 function getValidLocations() {
@@ -35,7 +33,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
 
   const locationName = locData?.name || location;
@@ -44,11 +42,11 @@ export async function generateMetadata({ params }: PageProps) {
     title:
       siteConfig.pages.location.seoTitleTemplate.replace(
         "{{location}}",
-        locationName
+        locationName,
       ) + ` | ${siteConfig.siteName}`,
     description: siteConfig.pages.location.seoDescriptionTemplate.replace(
       "{{location}}",
-      locationName
+      locationName,
     ),
     path: `/${location}`,
   });
@@ -56,7 +54,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 function getBasePath(locationSlug: string) {
   const loc = siteConfig.locations.find(
-    (l) => l.href.replace("/", "") === locationSlug
+    (l) => l.href.replace("/", "") === locationSlug,
   );
   return loc ? loc.href : "";
 }
@@ -70,7 +68,7 @@ export default async function LocationPage({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
 
   const locationName = locData?.name || location;
@@ -78,22 +76,14 @@ export default async function LocationPage({ params }: PageProps) {
   return (
     <>
       <Header basePath={getBasePath(location)} />
-      <Hero
-        title={siteConfig.pages.location.hero.titleTemplate.replace(
-          "{{location}}",
-          locationName
-        )}
-        subtitle={siteConfig.pages.location.hero.subtitle}
-        ctaText={siteConfig.pages.location.hero.ctaText}
-        ctaLink={siteConfig.pages.location.hero.ctaLink}
-      />
+      <Hero location={location} />
       <ContentSection
         title={siteConfig.pages.location.contentSection.titleTemplate.replace(
           "{{location}}",
-          locationName
+          locationName,
         )}
         content={siteConfig.pages.location.contentSection.contentTemplate.map(
-          (c) => c.replace("{{location}}", locationName)
+          (c) => c.replace("{{location}}", locationName),
         )}
       />
       <SellingProcess />

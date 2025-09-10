@@ -1,14 +1,16 @@
+// src/app/[location]/contact/page.tsx
+
 import { notFound } from "next/navigation";
 import { siteConfig } from "../../config";
 import { generateMetadata as buildMetadata } from "../../components/utils/metadata";
 import ContactForm from "../../components/ContactForm";
 import Header from "../../components/Header";
+import type { Metadata } from "next";
 
 type PageProps = {
-  params: {
-    location: string;
-  };
+  params: Promise<{ location: string }>;
 };
+
 function getValidLocations() {
   return siteConfig.locations.map((loc) => loc.href.replace(/^\//, ""));
 }
@@ -17,8 +19,11 @@ export function generateStaticParams() {
   return getValidLocations().map((loc) => ({ location: loc }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { location } = await params;
+// SEO
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { location } = await params; // ✅ חייב await כי זה Promise
   const validLocations = getValidLocations();
 
   if (!location || !validLocations.includes(location)) {
@@ -26,19 +31,19 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
   const locationName = locData?.name || location;
 
   return buildMetadata({
     title: siteConfig.pages.locationContact.seoTitleTemplate.replace(
       "{{location}}",
-      locationName
+      locationName,
     ),
     description:
       siteConfig.pages.locationContact.seoDescriptionTemplate.replace(
         "{{location}}",
-        locationName
+        locationName,
       ),
     path: `/${location}/contact`,
   });
@@ -46,12 +51,13 @@ export async function generateMetadata({ params }: PageProps) {
 
 function getBasePath(locationSlug: string) {
   const loc = siteConfig.locations.find(
-    (l) => l.href.replace("/", "") === locationSlug
+    (l) => l.href.replace("/", "") === locationSlug,
   );
   return loc ? loc.href : "";
 }
+
 export default async function LocationContactPage({ params }: PageProps) {
-  const { location } = await params;
+  const { location } = await params; // ✅ גם כאן await
   const validLocations = getValidLocations();
 
   if (!validLocations.includes(location)) {
@@ -59,7 +65,7 @@ export default async function LocationContactPage({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
   const locationName = locData?.name || location;
 
@@ -69,6 +75,7 @@ export default async function LocationContactPage({ params }: PageProps) {
   return (
     <>
       <Header basePath={getBasePath(location)} />
+
       {/* Hero Section */}
       <section className="bg-gray-800 text-white py-16 text-center">
         <div className="container mx-auto px-4">
@@ -80,8 +87,10 @@ export default async function LocationContactPage({ params }: PageProps) {
           </p>
         </div>
       </section>
+
       {/* Contact Form Section */}
       <ContactForm />
+
       {/* Trust Section */}
       <section className="py-16 bg-gray-50 text-gray-800">
         <div className="container mx-auto px-4">

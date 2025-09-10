@@ -48,7 +48,7 @@ export default function Testimonial() {
                 className="bg-gray-100 dark:bg-gray-800 p-8 md:p-10 rounded-3xl shadow-2xl"
               >
                 <blockquote className="text-xl italic text-center mb-6 text-gray-700 dark:text-gray-300">
-                  "{testimonials[currentIndex].quote}"
+                  &quot;{testimonials[currentIndex].quote}&quot;
                 </blockquote>
                 <p
                   className="font-bold text-center"
@@ -83,7 +83,7 @@ export default function Testimonial() {
                 className="bg-gray-100 dark:bg-gray-800 p-8 md:p-10 rounded-3xl shadow-2xl"
               >
                 <blockquote className="text-lg italic text-center mb-4 text-gray-700 dark:text-gray-300">
-                  "{testimonial.quote}"
+                  &quot;{testimonial.quote}&quot;
                 </blockquote>
                 <p
                   className="font-bold text-center"

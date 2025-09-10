@@ -17,8 +17,6 @@ export const metadata = generateMetadata({
 });
 
 export default function SellPage() {
-  const hero = siteConfig.pages.sell.hero;
-
   return (
     <>
       <Header />

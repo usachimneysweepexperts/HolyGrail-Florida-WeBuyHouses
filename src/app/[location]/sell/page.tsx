@@ -7,10 +7,9 @@ import ContactForm from "../../components/ContactForm";
 import Header from "../../components/Header";
 
 type PageProps = {
-  params: {
-    location: string;
-  };
+  params: Promise<{ location: string }>;
 };
+
 function getValidLocations() {
   return siteConfig.locations.map((loc) => loc.href.replace(/^\//, ""));
 }
@@ -29,18 +28,18 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
   const locationName = locData?.name || location;
 
   return buildMetadata({
     title: siteConfig.pages.locationSell.seoTitleTemplate.replace(
       "{{location}}",
-      locationName
+      locationName,
     ),
     description: siteConfig.pages.locationSell.seoDescriptionTemplate.replace(
       "{{location}}",
-      locationName
+      locationName,
     ),
     path: `/${location}/sell`,
   });
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 function getBasePath(locationSlug: string) {
   const loc = siteConfig.locations.find(
-    (l) => l.href.replace("/", "") === locationSlug
+    (l) => l.href.replace("/", "") === locationSlug,
   );
   return loc ? loc.href : "";
 }
@@ -62,11 +61,10 @@ export default async function LocationSellPage({ params }: PageProps) {
   }
 
   const locData = siteConfig.locations.find(
-    (loc) => loc.href.replace(/^\//, "") === location
+    (loc) => loc.href.replace(/^\//, "") === location,
   );
   const locationName = locData?.name || location;
 
-  const hero = siteConfig.pages.locationSell.hero;
   const content = siteConfig.pages.locationSell.contentSection;
 
   return (
@@ -80,7 +78,7 @@ export default async function LocationSellPage({ params }: PageProps) {
       <ContentSection
         title={content.titleTemplate.replace("{{location}}", locationName)}
         content={content.contentTemplate.map((c) =>
-          c.replace("{{location}}", locationName)
+          c.replace("{{location}}", locationName),
         )}
       />
 

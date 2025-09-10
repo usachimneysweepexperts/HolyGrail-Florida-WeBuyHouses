@@ -1,6 +1,6 @@
-import { image } from "framer-motion/client";
-
 // src/app/config.tsx
+import { locations } from "./locationsDataConfig";
+
 export const siteConfig = {
   siteName: "WIHomeBuyers",
   phoneNumber: "(920) 360-1252",
@@ -178,42 +178,7 @@ export const siteConfig = {
       cons: ["Offer may be lower than market value in some cases"],
     },
   ],
-  locations: [
-    {
-      name: "Appleton, WI",
-      href: "/appleton-wi",
-      image: "/images/appleton.jpg",
-    },
-    { name: "De Pere, WI", href: "/de-pere-wi", image: "/images/de-pere.jpg" },
-    {
-      name: "Fond du Lac, WI",
-      href: "/fond-du-lac-wi",
-      image: "/images/fond-du-lac.jpg",
-    },
-    {
-      name: "Kewaunee, WI",
-      href: "/kewaunee-wi",
-      image: "/images/kewaunee.jpg",
-    },
-    {
-      name: "Manitowoc, WI",
-      href: "/manitowoc-wi",
-      image: "/images/manitowoc.jpg",
-    },
-    { name: "Oconto, WI", href: "/oconto-wi", image: "/images/oconto.jpg" },
-    { name: "Oshkosh, WI", href: "/oshkosh-wi", image: "/images/oshkosh.jpg" },
-    { name: "Shawano, WI", href: "/shawano-wi", image: "/images/shawano.jpg" },
-    {
-      name: "Sheboygan, WI",
-      href: "/sheboygan-wi",
-      image: "/images/sheboygan.jpg",
-    },
-    {
-      name: "Sturgeon Bay, WI",
-      href: "/sturgeon-bay-wi",
-      image: "/images/sturgeon-bay.jpg",
-    },
-  ],
+  locations: locations,
   homepage: {
     seoTitle: "Sell Your House Fast In Green Bay, Wisconsin",
     seoDescription:
@@ -282,6 +247,7 @@ export const siteConfig = {
         subtitle: "Get a Cash Offer in 24 Hours with No Fees or Commissions!",
         ctaText: "Get Your Offer Now",
         ctaLink: "/contact",
+        backgroundImage: "/hero-backgroundImage.jpg",
       },
       contentSection: {
         titleTemplate:

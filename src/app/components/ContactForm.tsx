@@ -3,8 +3,27 @@
 import { useState } from "react";
 import { siteConfig } from "../config";
 
-export default function ContactForm({ side = "right" }) {
-  const [formData, setFormData] = useState({
+// טיפוסי הנתונים של הטופס
+type FormData = {
+  name: string;
+  phone: string;
+  address: string;
+};
+
+// טיפוס לשדות (נשתמש ב־keyof FormData כדי ש־TS ידע שאלו מפתחות חוקיים בלבד)
+type Field = {
+  name: keyof FormData;
+  type: string;
+  placeholder: string;
+  required: boolean;
+};
+
+export default function ContactForm({
+  side = "right",
+}: {
+  side?: "left" | "right";
+}) {
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     address: "",
@@ -12,17 +31,19 @@ export default function ContactForm({ side = "right" }) {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const fields = [
+  const fields: Field[] = [
     { name: "name", type: "text", placeholder: "Full Name", required: true },
     { name: "phone", type: "tel", placeholder: "Phone Number", required: true },
     { name: "address", type: "text", placeholder: "Address", required: false },
   ];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const fieldName = name as keyof FormData; // TS יודע שזה מפתח חוקי
+    setFormData({ ...formData, [fieldName]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.name && formData.phone) {
       setMessage("Thank you! We will get back to you shortly.");
@@ -40,7 +61,10 @@ export default function ContactForm({ side = "right" }) {
         {siteConfig.contentSection.title}
       </h3>
       <p className="text-gray-700 leading-relaxed">
-        {siteConfig.contentSection.content}
+        {/* אם content הוא מחרוזת בודדת */}
+        {Array.isArray(siteConfig.contentSection.content)
+          ? siteConfig.contentSection.content.join(" ")
+          : siteConfig.contentSection.content}
       </p>
     </div>
   );
@@ -73,7 +97,9 @@ export default function ContactForm({ side = "right" }) {
         </button>
         {message && (
           <p
-            className={`mt-4 text-center font-semibold text-sm ${isSuccess ? "text-green-600" : "text-red-600"}`}
+            className={`mt-4 text-center font-semibold text-sm ${
+              isSuccess ? "text-green-600" : "text-red-600"
+            }`}
           >
             {message}
           </p>
