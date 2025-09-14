@@ -1,16 +1,21 @@
 // src/app/config.tsx
 import { locations } from "./locationsDataConfig";
 
+const SiteName = "WeBuyHouses";
+const PhoneNumber = "(920) 360-1252";
+const CityState = "Florida";
+const State = "Florida"; //Wisconsin
+
 export const siteConfig = {
-  siteName: "WIHomeBuyers",
-  phoneNumber: "(920) 360-1252",
+  siteName: `${SiteName} - ${CityState}`,
+  phoneNumber: PhoneNumber,
   phoneLink: "tel:9203601252",
   primaryColor: "#1D4ED8",
   secondaryColor: "#F59E0B",
-  domian: "wihomebuyers.com",
-  fullDomain: "https://wihomebuyers.com",
+  domian: "WeBuyHouses.com",
+  fullDomain: "https://WeBuyHouses.com",
   hero: {
-    title: "Sell Your House Fast In Green Bay, Wisconsin",
+    title: `Sell Your House Fast In ${CityState}`,
     subtitle: "Get a Cash Offer in 24 Hours with No Fees or Commissions!",
     ctaText: "Get Your Offer Now",
     ctaLink: "/contact",
@@ -18,21 +23,21 @@ export const siteConfig = {
   },
   heros: {
     contact: {
-      title: "Sell Your House Fast In Green Bay, Wisconsin",
+      title: `Sell Your House Fast In ${CityState}`,
       subtitle: "Get a Cash Offer in 24 Hours with No Fees or Commissions!",
       ctaText: "Get Your Offer Now",
       ctaLink: "/contact",
       backgroundImage: "/hero-backgroundImage.jpg",
     },
     buy: {
-      title: "We Buy Houses in Green Bay, Wisconsin",
+      title: `We Buy Houses in ${CityState}`,
       subtitle: "Fair Cash Offers. No Repairs. No Commissions. No Hassles.",
       ctaText: "Get Your Offer Now",
       ctaLink: "/contact",
       backgroundImage: "/hero-backgroundImage.jpg",
     },
     sell: {
-      title: "Sell Your House Fast In Green Bay, Wisconsin",
+      title: `Sell Your House Fast In ${CityState}`,
       subtitle: "Get a Cash Offer in 24 Hours with No Fees or Commissions!",
       ctaText: "Get Your Offer Now",
       ctaLink: "/contact",
@@ -50,7 +55,7 @@ export const siteConfig = {
   contentSection: {
     title: "The Easiest Way To Sell Your House Fast In Green Bay",
     content: [
-      "WIHomeBuyers is your trusted local solution for selling your Green Bay home quickly, easily, and for cash—no matter the condition.",
+      `${SiteName} is your trusted local solution for selling your Green Bay home quickly, easily, and for cash—no matter the condition.`,
       "Whether your property is in perfect shape or needs significant repairs, we provide a fair, no-obligation cash offer within 24 hours.",
       "Our process eliminates the stress of traditional sales: no listings, no showings, no waiting months for a buyer, and no last-minute financing fall-throughs.",
       "With over five years of experience in the Green Bay area, we specialize in helping homeowners move forward from difficult situations—",
@@ -73,12 +78,12 @@ export const siteConfig = {
         "2. Receive a fair cash offer within 24 hours—no obligation.",
         "3. Pick your closing date and walk away with cash in hand.",
 
-        "No more waiting, no more stress. If you're ready to sell your Green Bay home fast, WIHomeBuyers is here to help.",
+        "No more waiting, no more stress. If you're ready to sell your Green Bay home fast, WeBuyHouses is here to help.",
         "Get started today and experience the easiest way to sell your house!",
       ],
     },
     highlight: {
-      title: "WIHomeBuyers makes it simple:",
+      title: `${SiteName}  makes it simple:`,
       content: [
         "No repairs – We buy houses in any condition.",
         "No fees – Zero commissions or closing costs.",
@@ -121,7 +126,7 @@ export const siteConfig = {
   },
   footer: {
     year: "2025",
-    poweredBy: "HolyGrail-wihomebuyers",
+    poweredBy: `HolyGrail-${SiteName}`,
     privacyPolicyLink: "/privacy-policy",
   },
   sellingProcess: [
@@ -180,9 +185,9 @@ export const siteConfig = {
   ],
   locations: locations,
   homepage: {
-    seoTitle: "Sell Your House Fast In Green Bay, Wisconsin",
+    seoTitle: `Sell Your House Fast In ${CityState}`,
     seoDescription:
-      "WIHomeBuyers helps homeowners in Green Bay and across Wisconsin sell quickly and easily for cash. No fees, no commissions, no repairs.",
+      `${SiteName} helps homeowners in Green Bay and across ${State} sell quickly and easily for cash. No fees, no commissions, no repairs.`,
   },
   pages: {
     contact: {
@@ -190,9 +195,9 @@ export const siteConfig = {
       seoDescription:
         "Get a fair cash offer for your house in 24 hours. Fill out our form or call us!",
       hero: {
-        title: "Contact WIHomeBuyers",
+        title:`Contact ${SiteName} `,
         subtitle:
-          "Ready to sell your house fast? Fill out the form below or call us at (920) 360-1252.",
+          `Ready to sell your house fast? Fill out the form below or call us at ${PhoneNumber}.`,
       },
       trustSection: {
         title: "Why We Are Your Most Trusted Partner",
@@ -221,20 +226,20 @@ export const siteConfig = {
         "Read our privacy policy to understand how we handle your personal information.",
       title: "Privacy Policy",
       content: [
-        `At WIHomeBuyers, we are committed to protecting your privacy.
+        `At ${SiteName}, we are committed to protecting your privacy.
        This policy outlines how we collect, use, and safeguard your personal information
        when you visit our website or contact us.`,
-        `For more details, please contact us at (920) 360-1252.`,
+        `For more details, please contact us at ${PhoneNumber}.`,
       ],
     },
     notFound: {
       seoTitle: "Page Not Found",
       seoDescription:
-        "The page you’re looking for doesn’t exist. But if you’re ready to sell your house fast in Wisconsin, WIHomeBuyers can help.",
+        `The page you’re looking for doesn’t exist. But if you’re ready to sell your house fast in ${State}, ${SiteName} can help.`,
       title: "404",
       subtitle: "Oops! This page doesn’t exist.",
       message:
-        "Looks like you’re searching for a house that’s already been sold 😉. But don’t worry — WIHomeBuyers buys houses fast, and we can help you too!",
+        `Looks like you’re searching for a house that’s already been sold 😉. But don’t worry — ${SiteName} buys houses fast, and we can help you too!`,
       ctaPrimary: { text: "Contact Us", href: "/contact" },
       ctaSecondary: { text: "Back to Home", href: "/" },
     },
@@ -253,7 +258,7 @@ export const siteConfig = {
         titleTemplate:
           "The Easiest Way To Sell Your House Fast In {{location}}",
         contentTemplate: [
-          "WIHomeBuyers helps homeowners in {{location}} sell quickly and easily, regardless of the property's condition.",
+          `${SiteName} helps homeowners in {{location}} sell quickly and easily, regardless of the property's condition.`,
         ],
       },
     },
@@ -262,7 +267,7 @@ export const siteConfig = {
       seoDescriptionTemplate:
         "Get a fair cash offer for your {{location}} house in 24 hours. Fill out our form or call us!",
       hero: {
-        titleTemplate: "Contact WIHomeBuyers in {{location}}",
+        titleTemplate: `Contact ${SiteName} in {{location}}`,
         subtitleTemplate:
           "Ready to sell your house fast in {{location}}? Fill out the form below or call us at (920) 360-1252.",
       },
@@ -288,11 +293,11 @@ export const siteConfig = {
       },
     },
     buy: {
-      seoTitle: "We Buy Houses in Wisconsin",
+      seoTitle: `We Buy Houses in ${State}`,
       seoDescription:
-        "Sell your house quickly and hassle-free. We buy houses in any condition across Wisconsin.",
+        `Sell your house quickly and hassle-free. We buy houses in any condition across ${State}.`,
       hero: {
-        title: "We Buy Houses in Wisconsin",
+        title: `We Buy Houses in ${State}`,
         subtitle: "Fair Cash Offers. No Repairs. No Commissions. No Hassles.",
         ctaText: "Get Your Offer Now",
         ctaLink: "/contact",
@@ -300,11 +305,11 @@ export const siteConfig = {
       },
     },
     sell: {
-      seoTitle: "Sell Your House Fast in Wisconsin",
+      seoTitle: `Sell Your House Fast in ${State}`,
       seoDescription:
-        "Get a fair cash offer within 24 hours and sell your house as-is in Wisconsin.",
+        `Get a fair cash offer within 24 hours and sell your house as-is in ${State}.`,
       hero: {
-        title: "Sell Your House Fast in Wisconsin",
+        title: `Sell Your House Fast in ${State}`,
         subtitle: "Get a Cash Offer in 24 Hours with No Fees or Commissions!",
         ctaText: "Get Your Offer Now",
         ctaLink: "/contact",
@@ -324,7 +329,7 @@ export const siteConfig = {
         backgroundImage: "/hero-sell.jpg",
       },
       contentSection: {
-        titleTemplate: "Why Sell Your {{location}} House With WIHomeBuyers?",
+        titleTemplate: `Why Sell Your {{location}} House With ${SiteName}?`,
         contentTemplate: [
           "Avoid listings, open houses, and waiting months for offers in {{location}}.",
           "Sell your house as-is — no cleaning or repairs required.",
@@ -345,7 +350,7 @@ export const siteConfig = {
         backgroundImage: "/hero-buy.jpg",
       },
       contentSection: {
-        titleTemplate: "Why Choose WIHomeBuyers in {{location}}?",
+        titleTemplate: `Why Choose ${SiteName} in {{location}}?`,
         contentTemplate: [
           "We buy houses in any condition across {{location}}.",
           "No repairs, no commissions, no waiting months for a buyer.",
