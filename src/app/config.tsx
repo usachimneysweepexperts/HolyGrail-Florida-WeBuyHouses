@@ -4,7 +4,7 @@ import { locations } from "./locationsDataConfig";
 const SiteName = "WeBuyHouses";
 const PhoneNumber = "(920) 360-1252";
 const CityState = "Florida";
-const State = "Florida"; //Wisconsin
+const State = "Florida";
 
 export const siteConfig = {
   siteName: `${SiteName} - ${CityState}`,
@@ -53,12 +53,12 @@ export const siteConfig = {
     ],
   },
   contentSection: {
-    title: "The Easiest Way To Sell Your House Fast In Green Bay",
+    title: `The Easiest Way To Sell Your House Fast In ${CityState}`,
     content: [
-      `${SiteName} is your trusted local solution for selling your Green Bay home quickly, easily, and for cash—no matter the condition.`,
+      `${SiteName} is your trusted local solution for selling your ${State} home quickly, easily, and for cash—no matter the condition.`,
       "Whether your property is in perfect shape or needs significant repairs, we provide a fair, no-obligation cash offer within 24 hours.",
       "Our process eliminates the stress of traditional sales: no listings, no showings, no waiting months for a buyer, and no last-minute financing fall-throughs.",
-      "With over five years of experience in the Green Bay area, we specialize in helping homeowners move forward from difficult situations—",
+      `With over five years of experience in the ${State} area, we specialize in helping homeowners move forward from difficult situations—`,
       "whether it's an inherited property, a burdensome rental, divorce, foreclosure, or simply a house you no longer want to maintain.",
       "We buy houses as-is, so you don’t have to lift a finger for repairs or cleaning.",
     ],
@@ -78,7 +78,7 @@ export const siteConfig = {
         "2. Receive a fair cash offer within 24 hours—no obligation.",
         "3. Pick your closing date and walk away with cash in hand.",
 
-        "No more waiting, no more stress. If you're ready to sell your Green Bay home fast, WeBuyHouses is here to help.",
+        `No more waiting, no more stress. If you're ready to sell your ${State} home fast, WeBuyHouses is here to help.`,
         "Get started today and experience the easiest way to sell your house!",
       ],
     },
@@ -187,7 +187,7 @@ export const siteConfig = {
   homepage: {
     seoTitle: `Sell Your House Fast In ${CityState}`,
     seoDescription:
-      `${SiteName} helps homeowners in Green Bay and across ${State} sell quickly and easily for cash. No fees, no commissions, no repairs.`,
+      `${SiteName} helps homeowners in ${State} and across ${CityState} sell quickly and easily for cash. No fees, no commissions, no repairs.`,
   },
   pages: {
     contact: {

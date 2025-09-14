@@ -1,0 +1,43 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run type checking
+      - name: Run type-check
+        run: npm run type-check
+
+      # Run code formatting
+      - name: Run format
+        run: npm run format
+
+      # Run linting
+      - name: Run lint
+        run: npm run lint
+
+      # Run build
+      - name: Run build
+        run: npm run build
